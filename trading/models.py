@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -26,7 +27,7 @@ class Cryptocurrency(models.Model):
 
 
 class Portfolio(models.Model):
-    user_id = models.IntegerField()          # User ID (to be linked later)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)         # User ID (to be linked later)
     stock_symbol = models.CharField(max_length=10)  # Tracked stock symbol
     crypto_symbol = models.CharField(max_length=10, null=True, blank=True)  # Tracked crypto (optional)
     quantity = models.FloatField()           # Quantity held

@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand # type: ignore
 from trading.utils import fetch_and_save_stocks, fetch_and_save_cryptos
 
 class Command(BaseCommand):

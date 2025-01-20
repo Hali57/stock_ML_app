@@ -15,3 +15,10 @@ class PortfolioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Portfolio
         fields = '__all__'
+        
+    def create(self, validated_data):
+        # Link the portfolio to the current user automatically
+        # if you don't want the user to pass in 'user'
+        user = self.context['request'].user
+        validated_data['user'] = user
+        return super().create(validated_data)
